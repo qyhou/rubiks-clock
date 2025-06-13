@@ -35,7 +35,8 @@ class Clock(object):
 
         self.scramble = self.generate_scramble(scramble)
 
-        self.scramble_state, self.scramble_state_front, self.scramble_state_back = self.calc_scramble_state(self.scramble)
+        self.scramble_state, self.scramble_state_front, self.scramble_state_back = \
+            self.calc_scramble_state(self.scramble)
         
     
     def generate_scramble(self, scramble):
@@ -59,72 +60,8 @@ class Clock(object):
         scramble_state_front = np.concatenate([state[i: i + 3] for i in range(0, len(state), 6)]).reshape(3, 3)
         scramble_state_back = np.concatenate([state[i + 3: i + 6] for i in range(0, len(state), 6)]).reshape(3, 3)
         return scramble_state, scramble_state_front, scramble_state_back
-    
-    def get_tommy_x2_no_flip(self, scramble_state):
-        m1 = -scramble_state[self.x2_map['d']] + scramble_state[self.x2_map['c']]
-        m2 = (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]) + \
-             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['U']])
-        m3 = -scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['d']]
-        m4 = -((-scramble_state[self.x2_map['C']] + scramble_state[self.x2_map['U']]) +
-             scramble_state[self.x2_map['D']] +
-             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']]) +
-             (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]))
-        m5 = (-scramble_state[self.x2_map['c']] + scramble_state[self.x2_map['u']]) + \
-             scramble_state[self.x2_map['d']] + \
-             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']]) + \
-             (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['DR']])
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12, 
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_tommy_x2_flip(self, scramble_state):
-        m1 = (-scramble_state[self.x2_map['DR']] + scramble_state[self.x2_map['R']]) + \
-             (-scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['l']])
-        m2 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
-             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
-        m3 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
-        m4 = -((-scramble_state[self.x2_map['c']] + scramble_state[self.x2_map['u']]) +
-             scramble_state[self.x2_map['d']] +
-             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']]) +
-             (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['DR']]))
-        m5 = (-scramble_state[self.x2_map['C']] + scramble_state[self.x2_map['U']]) + \
-             scramble_state[self.x2_map['D']] + \
-             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']]) + \
-             (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']])
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-    
-    def get_tommy_y2_no_flip(self, scramble_state):
-        m1 = -scramble_state[self.y2_map['u']] + scramble_state[self.y2_map['c']]
-        m2 = (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) + \
-             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['U']])
-        m3 = -scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['u']]
-        m4 = -((-scramble_state[self.y2_map['C']] + scramble_state[self.y2_map['U']]) +
-             scramble_state[self.y2_map['D']] +
-             (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) +
-             (-scramble_state[self.y2_map['r']] + scramble_state[self.y2_map['dr']]))
-        m5 = (-scramble_state[self.y2_map['c']] + scramble_state[self.y2_map['u']]) + \
-             scramble_state[self.y2_map['d']] + \
-             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['UL']]) + \
-             (-scramble_state[self.y2_map['R']] + scramble_state[self.y2_map['DR']])
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12, 
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-    
-    def get_bpaul_x2_no_flip(self, scramble_state):
-        m1 = -scramble_state[self.x2_map['d']] + scramble_state[self.x2_map['c']]
-        m2 = (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]) + \
-             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['U']])
-        m3 = -scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['d']]
-        m4 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
-             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
-        m5 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12, 
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-    
-    def get_bpaul_x2_flip(self, scramble_state):
+    def get_7_simul_flip_bpaul_1_x2(self, scramble_state):
         m1 = (-scramble_state[self.x2_map['DR']] + scramble_state[self.x2_map['R']]) + \
              (-scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['l']])
         m2 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
@@ -132,24 +69,11 @@ class Clock(object):
         m3 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
         m4 = (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['d']]) + \
              (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']])
-        m5 = -scramble_state[self.x2_map['U']] + scramble_state[self.x2_map['C']]
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        m1, m2, m3, m4 = m1 % 12, m2 % 12, m3 % 12, m4 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-    
-    def get_bpaul_y2_no_flip(self, scramble_state):
-        m1 = -scramble_state[self.y2_map['u']] + scramble_state[self.y2_map['c']]
-        m2 = (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) + \
-             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['U']])
-        m3 = -scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['u']]
-        m4 = (-scramble_state[self.y2_map['R']] + scramble_state[self.y2_map['D']]) + \
-             (-scramble_state[self.y2_map['r']] + scramble_state[self.y2_map['dr']])
-        m5 = -scramble_state[self.y2_map['d']] + scramble_state[self.y2_map['c']]
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12, 
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+                m4 if m4 < 7 else m4 - 12)
 
-    def get_7sfndmw4lm_x2_flip(self, scramble_state):
+    def get_7_simul_flip_bpaul_2_x2(self, scramble_state):
         m1 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
              (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
         m2 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
@@ -159,3 +83,97 @@ class Clock(object):
         m1, m2, m3, m4 = m1 % 12, m2 % 12, m3 % 12, m4 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12)
+
+    def get_7_simul_flip_tommy_1_x2(self, scramble_state):
+        m1 = (-scramble_state[self.x2_map['DR']] + scramble_state[self.x2_map['R']]) + \
+             (-scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['l']])
+        m2 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
+             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
+        m3 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
+        m4 = -((-scramble_state[self.x2_map['c']] + scramble_state[self.x2_map['u']]) +
+               scramble_state[self.x2_map['d']] +
+               (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']]) +
+               (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['DR']]))
+        m5 = (-scramble_state[self.x2_map['C']] + scramble_state[self.x2_map['U']]) + \
+             scramble_state[self.x2_map['D']] + \
+             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']]) + \
+             (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+    def get_7_simul_flip_tommy_2_x2(self, scramble_state):
+        m1 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
+             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
+        m2 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
+        m3 = -scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['u']]
+        m4 = -((-scramble_state[self.x2_map['c']] + scramble_state[self.x2_map['u']]) +
+               scramble_state[self.x2_map['d']] +
+               (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']]) +
+               (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['DR']]))
+        m5 = (-scramble_state[self.x2_map['C']] + scramble_state[self.x2_map['U']]) + \
+             scramble_state[self.x2_map['D']] + \
+             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']]) + \
+             (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+
+    def get_7_simul_no_flip_bpaul_x2(self, scramble_state):
+        m1 = -scramble_state[self.x2_map['d']] + scramble_state[self.x2_map['c']]
+        m2 = (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]) + \
+             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['U']])
+        m3 = -scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['d']]
+        m4 = (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['D']]) + \
+             (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']])
+        m5 = -scramble_state[self.x2_map['u']] + scramble_state[self.x2_map['c']]
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+    def get_7_simul_no_flip_bpaul_y2(self, scramble_state):
+        m1 = -scramble_state[self.y2_map['u']] + scramble_state[self.y2_map['c']]
+        m2 = (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) + \
+             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['U']])
+        m3 = -scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['u']]
+        m4 = (-scramble_state[self.y2_map['R']] + scramble_state[self.y2_map['D']]) + \
+             (-scramble_state[self.y2_map['r']] + scramble_state[self.y2_map['dr']])
+        m5 = -scramble_state[self.y2_map['d']] + scramble_state[self.y2_map['c']]
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+    def get_7_simul_no_flip_tommy_x2(self, scramble_state):
+        m1 = -scramble_state[self.x2_map['d']] + scramble_state[self.x2_map['c']]
+        m2 = (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]) + \
+             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['U']])
+        m3 = -scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['d']]
+        m4 = -((-scramble_state[self.x2_map['C']] + scramble_state[self.x2_map['U']]) +
+               scramble_state[self.x2_map['D']] +
+               (-scramble_state[self.x2_map['l']] + scramble_state[self.x2_map['ul']]) +
+               (-scramble_state[self.x2_map['r']] + scramble_state[self.x2_map['dr']]))
+        m5 = (-scramble_state[self.x2_map['c']] + scramble_state[self.x2_map['u']]) + \
+             scramble_state[self.x2_map['d']] + \
+             (-scramble_state[self.x2_map['L']] + scramble_state[self.x2_map['UL']]) + \
+             (-scramble_state[self.x2_map['R']] + scramble_state[self.x2_map['DR']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+    def get_7_simul_no_flip_tommy_y2(self, scramble_state):
+        m1 = -scramble_state[self.y2_map['u']] + scramble_state[self.y2_map['c']]
+        m2 = (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) + \
+             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['U']])
+        m3 = -scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['u']]
+        m4 = -((-scramble_state[self.y2_map['C']] + scramble_state[self.y2_map['U']]) +
+               scramble_state[self.y2_map['D']] +
+               (-scramble_state[self.y2_map['l']] + scramble_state[self.y2_map['ul']]) +
+               (-scramble_state[self.y2_map['r']] + scramble_state[self.y2_map['dr']]))
+        m5 = (-scramble_state[self.y2_map['c']] + scramble_state[self.y2_map['u']]) + \
+             scramble_state[self.y2_map['d']] + \
+             (-scramble_state[self.y2_map['L']] + scramble_state[self.y2_map['UL']]) + \
+             (-scramble_state[self.y2_map['R']] + scramble_state[self.y2_map['DR']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
