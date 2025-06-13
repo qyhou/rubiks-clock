@@ -39,8 +39,8 @@ TODO
 | \    | [UL] UL,U,L,C,R,D,DR → 12 | [UR] UR,DL → 12         |
 
 #### Bpaul’s Order 2 (x2 encoding)
-- [いかのおすし(いかおす): クロックの解法「7-simul flip(7sfndmw4lm)」の紹介](https://note.com/squid_sushi/n/nc1c62514b0f1)
-- [TetraWaffle: 7 simul flip example solves/tutorials (4 versions)](https://www.youtube.com/watch?v=Hr87Qn9YljU)
+- [【いかのおすし(いかおす)】クロックの解法「7-simul flip(7sfndmw4lm)」の紹介](https://note.com/squid_sushi/n/nc1c62514b0f1)
+- [【TetraWaffle】7 simul flip example solves/tutorials (4 versions)](https://www.youtube.com/watch?v=Hr87Qn9YljU)
 
 | Pins | Simul-L                   | Simul-R         |
 |------|---------------------------|-----------------|
@@ -54,7 +54,7 @@ TODO
 | \    | [UL] UL,U,L,C,R,D,DR → 12 | [UR] UR,DL → 12 |
 
 #### Tommy Cherry’s Order 1 (x2 encoding)
-- [JJ Cuber: Tommy V2 - Advanced 7-Simul Flip Tutorial (Clock)](https://www.youtube.com/watch?v=A1iUwpWzyXw)
+- [【JJ Cuber】Tommy V2 - Advanced 7-Simul Flip Tutorial (Clock)](https://www.youtube.com/watch?v=A1iUwpWzyXw)
 
 | Pins | Simul-L                              | Simul-R                           |
 |------|--------------------------------------|-----------------------------------|
@@ -93,7 +93,7 @@ TODO
 | \    | [UL] UL,U,L,C,R,D,DR → 12 | [UR] UR,DL → 12         |
 
 #### Bpaul’s Order (y2 encoding)
-- [Kiwi Cuber: Beginner 7 Simul Tutorial [EASY] - Advanced No-Flip Clock Method (bpaul)](https://www.youtube.com/watch?v=HGlJo6yqUkc)
+- [【Kiwi Cuber】Beginner 7 Simul Tutorial [EASY] - Advanced No-Flip Clock Method (bpaul)](https://www.youtube.com/watch?v=HGlJo6yqUkc)
 
 | Pins | Simul-L                   | Simul-R                 |
 |------|---------------------------|-------------------------|
@@ -106,9 +106,9 @@ TODO
 | \    | [UL] UL,U,L,C,R,D,DR → 12 | [UR] UR,DL → 12         |
 
 #### Tommy Cherry’s Order (x2 encoding)
-- [Caleb Trelford: https://www.youtube.com/watch?v=MutprsOAhR4](https://www.youtube.com/watch?v=MutprsOAhR4)
-- [Sukant: the 7simul video](https://www.youtube.com/watch?v=Lqv4HLZ22TQ)
-- [Tommy Cherry: 7 Simul Tutorial (Clock) by Tommy Cherry](https://www.youtube.com/watch?v=ZX5ssGWUGb4)
+- [【Caleb Trelford】7 Simul Intermediate Clock Method Tutorial!](https://www.youtube.com/watch?v=MutprsOAhR4)
+- [【Sukant】the 7simul video](https://www.youtube.com/watch?v=Lqv4HLZ22TQ)
+- [【Tommy Cherry】7 Simul Tutorial (Clock) by Tommy Cherry](https://www.youtube.com/watch?v=ZX5ssGWUGb4)
 
 | Pins | Simul-L                              | Simul-R                           |
 |------|--------------------------------------|-----------------------------------|
@@ -136,7 +136,7 @@ TODO
 - [https://sanya.sweetduet.info/cube/7simul_trainer/](https://sanya.sweetduet.info/cube/7simul_trainer/)
 
 ## 3. Sheerin
-- [Caleb Trelford: Learn How to Solve a Clock No-Flip in 10 Minutes (Beginner Tutorial) - Sheerin Method](https://www.youtube.com/watch?v=bHuuXDr_oYQ)
+- [【Caleb Trelford】Learn How to Solve a Clock No-Flip in 10 Minutes (Beginner Tutorial) - Sheerin Method](https://www.youtube.com/watch?v=bHuuXDr_oYQ)
 
 ## 4. Traditional Flip
 | Pins | Steps                           |
