@@ -2,29 +2,25 @@
 This repository provides a curated collection of resources on solving the [Rubik’s Clock](https://en.wikipedia.org/wiki/Rubik%27s_Clock), compiled by 2015HOUQ01 and 2017HEXI01.
 
 ## Table of Contents
-1. Method I Use
-2. 7-Simul
-   - 2.1 7-Simul Flip
+1. 7-Simul
+   - 1.1 7-Simul Flip
       - Bpaul’s Order 1 (x2 encoding)
       - Bpaul’s Order 2 (x2 encoding)
       - Tommy Cherry’s Order 1 (x2 encoding)
       - Tommy Cherry’s Order 2 (x2 encoding)
-   - 2.2 7-Simul No-Flip
+   - 1.2 7-Simul No-Flip
       - Bpaul’s Order (x2 encoding)
       - Bpaul’s Order (y2 encoding)
       - Tommy Cherry’s Order (x2 encoding)
       - Tommy Cherry’s Order (y2 encoding)
-   - 2.3 7-Simul Trainers
-3. Sheerin
-4. Traditional Flip
-5. God’s number
+   - 1.3 7-Simul Trainers
+2. Sheerin
+3. Traditional Flip
+4. God’s number
 
-## 1. Method I Use
-TODO
+## 1. 7-Simul
 
-## 2. 7-Simul
-
-### 2.1 7-Simul Flip
+### 1.1 7-Simul Flip
 
 #### Bpaul’s Order 1 (x2 encoding)
 | Pins | Simul-L                   | Simul-R                 |
@@ -41,6 +37,7 @@ TODO
 #### Bpaul’s Order 2 (x2 encoding)
 - [【いかのおすし(いかおす)】クロックの解法「7-simul flip(7sfndmw4lm)」の紹介](https://note.com/squid_sushi/n/nc1c62514b0f1)
 - [【TetraWaffle】7 simul flip example solves/tutorials (4 versions)](https://www.youtube.com/watch?v=Hr87Qn9YljU)
+- [【TheCubicle】Tommy Cherry Shows Tymon How to Solve Clock Using 7 Simul](https://www.youtube.com/watch?v=Biu9QV6c-FI)
 
 | Pins | Simul-L                   | Simul-R         |
 |------|---------------------------|-----------------|
@@ -79,7 +76,7 @@ TODO
 | L    | [UL] UL,U,L,C,DL,D → R               | [UR] DR → R                       |
 | ur   | [UL] UL,U,L,C,R,DL,D,DR → 12         | [UR] UR → 12                      |
 
-### 2.2 7-Simul No-Flip
+### 1.2 7-Simul No-Flip
 
 #### Bpaul’s Order (x2 encoding)
 | Pins | Simul-L                   | Simul-R                 |
@@ -131,14 +128,14 @@ TODO
 | L    | [UL] UL,U,L,C,DL,D → R               | [UR] DR → R                       |
 | ur   | [UL] UL,U,L,C,R,DL,D,DR → 12         | [UR] UR → 12                      |
 
-### 2.3 7-Simul Trainers
+### 1.3 7-Simul Trainers
 - [https://joshm2.github.io/7-Simul/](https://joshm2.github.io/7-Simul/)
 - [https://sanya.sweetduet.info/cube/7simul_trainer/](https://sanya.sweetduet.info/cube/7simul_trainer/)
 
-## 3. Sheerin
+## 2. Sheerin
 - [【Caleb Trelford】Learn How to Solve a Clock No-Flip in 10 Minutes (Beginner Tutorial) - Sheerin Method](https://www.youtube.com/watch?v=bHuuXDr_oYQ)
 
-## 4. Traditional Flip
+## 3. Traditional Flip
 - [【2015HOUQ01】魔表技巧总结](https://tieba.baidu.com/p/4879288889)
 
 | Pins | Steps                           |
@@ -159,5 +156,5 @@ TODO
 | ur   | [UL] UL,U,L,C,R,DL,D,DR → UR    |
 | ALL  | [UR] UL,U,UR,L,C,R,DL,D,DR → 12 |
 
-## 5. God’s number
+## 4. God’s number
 - [Rubik's Clock has now been solved!](https://www.cube20.org/clock/)
