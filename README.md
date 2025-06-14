@@ -1,5 +1,5 @@
 # Rubik’s Clock
-This repository provides a curated collection of resources on solving the [Rubik’s Clock](https://en.wikipedia.org/wiki/Rubik%27s_Clock).
+This repository provides a curated collection of resources on solving the [Rubik’s Clock](https://en.wikipedia.org/wiki/Rubik%27s_Clock), compiled by 2015HOUQ01 and 2017HEXI01.
 
 ## Table of Contents
 1. Method I Use
@@ -139,6 +139,8 @@ TODO
 - [【Caleb Trelford】Learn How to Solve a Clock No-Flip in 10 Minutes (Beginner Tutorial) - Sheerin Method](https://www.youtube.com/watch?v=bHuuXDr_oYQ)
 
 ## 4. Traditional Flip
+- [【2015HOUQ01】魔表技巧总结](https://tieba.baidu.com/p/4879288889)
+
 | Pins | Steps                           |
 |------|---------------------------------|
 | UR   | [UR] U → L                      |
