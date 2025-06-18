@@ -79,28 +79,65 @@ class Clock(object):
         self.front_state = np.concatenate([self.state[i: i + 3] for i in range(0, len(self.state), 6)]).reshape(3, 3)
         self.back_state = np.concatenate([self.state[i + 3: i + 6] for i in range(0, len(self.state), 6)]).reshape(3, 3)
 
-    def get_7_simul_flip_bpaul_1_x2(self):
-        m1 = (-self.state[X2_MAP['DR']] + self.state[X2_MAP['R']]) + \
-             (-self.state[X2_MAP['u']] + self.state[X2_MAP['l']])
-        m2 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
-             (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
-        m3 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
-        m4 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['d']]) + \
-             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']])
-        m1, m2, m3, m4 = m1 % 12, m2 % 12, m3 % 12, m4 % 12
+    def get_7_simul_no_flip_tommy_x2(self):
+        m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
+        m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
+             (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
+        m3 = -self.state[X2_MAP['r']] + self.state[X2_MAP['d']]
+        m4 = -((-self.state[X2_MAP['C']] + self.state[X2_MAP['U']]) +
+               self.state[X2_MAP['D']] +
+               (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']]) +
+               (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]))
+        m5 = (-self.state[X2_MAP['c']] + self.state[X2_MAP['u']]) + \
+             self.state[X2_MAP['d']] + \
+             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']]) + \
+             (-self.state[X2_MAP['R']] + self.state[X2_MAP['DR']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12)
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_flip_bpaul_2_x2(self):
-        m1 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
-             (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
-        m2 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
-        m3 = -self.state[X2_MAP['l']] + self.state[X2_MAP['u']]
-        m4 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['d']]) + \
-             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']])
-        m1, m2, m3, m4 = m1 % 12, m2 % 12, m3 % 12, m4 % 12
+    def get_7_simul_no_flip_tommy_y2(self):
+        m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
+        m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
+             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
+        m3 = -self.state[Y2_MAP['l']] + self.state[Y2_MAP['u']]
+        m4 = -((-self.state[Y2_MAP['C']] + self.state[Y2_MAP['U']]) +
+               self.state[Y2_MAP['D']] +
+               (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) +
+               (-self.state[Y2_MAP['r']] + self.state[Y2_MAP['dr']]))
+        m5 = (-self.state[Y2_MAP['c']] + self.state[Y2_MAP['u']]) + \
+             self.state[Y2_MAP['d']] + \
+             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['UL']]) + \
+             (-self.state[Y2_MAP['R']] + self.state[Y2_MAP['DR']])
+        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12)
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+
+    def get_7_simul_no_flip_bpaul_x2(self):
+        m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
+        m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
+             (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
+        m3 = -self.state[X2_MAP['r']] + self.state[X2_MAP['d']]
+        m4 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
+             (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
+        m5 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
+        m6 = -self.state[X2_MAP['l']] + self.state[X2_MAP['u']]
+        m1, m2, m3, m4, m5, m6 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12, m6 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
+
+    def get_7_simul_no_flip_bpaul_y2(self):
+        m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
+        m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
+             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
+        m3 = -self.state[Y2_MAP['l']] + self.state[Y2_MAP['u']]
+        m4 = (-self.state[Y2_MAP['R']] + self.state[Y2_MAP['D']]) + \
+             (-self.state[Y2_MAP['r']] + self.state[Y2_MAP['dr']])
+        m5 = -self.state[Y2_MAP['d']] + self.state[Y2_MAP['c']]
+        m6 = -self.state[X2_MAP['r']] + self.state[X2_MAP['d']]
+        m1, m2, m3, m4, m5, m6 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12, m6 % 12
+        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
 
     def get_7_simul_flip_tommy_1_x2(self):
         m1 = (-self.state[X2_MAP['DR']] + self.state[X2_MAP['R']]) + \
@@ -137,60 +174,29 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_no_flip_bpaul_x2(self):
-        m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
-        m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
-             (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
-        m3 = -self.state[X2_MAP['r']] + self.state[X2_MAP['d']]
-        m4 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
+    def get_7_simul_flip_bpaul_1_x2(self):
+        m1 = (-self.state[X2_MAP['DR']] + self.state[X2_MAP['R']]) + \
+             (-self.state[X2_MAP['u']] + self.state[X2_MAP['l']])
+        m2 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
              (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
-        m5 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+        m3 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
+        m4 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['d']]) + \
+             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']])
+        m5 = -self.state[X2_MAP['U']] + self.state[X2_MAP['C']]
+        m6 = -self.state[X2_MAP['L']] + self.state[X2_MAP['U']]
+        m1, m2, m3, m4, m5, m6 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12, m6 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
 
-    def get_7_simul_no_flip_bpaul_y2(self):
-        m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
-        m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
-             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
-        m3 = -self.state[Y2_MAP['l']] + self.state[Y2_MAP['u']]
-        m4 = (-self.state[Y2_MAP['R']] + self.state[Y2_MAP['D']]) + \
-             (-self.state[Y2_MAP['r']] + self.state[Y2_MAP['dr']])
-        m5 = -self.state[Y2_MAP['d']] + self.state[Y2_MAP['c']]
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
+    def get_7_simul_flip_bpaul_2_x2(self):
+        m1 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
+             (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
+        m2 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
+        m3 = -self.state[X2_MAP['l']] + self.state[X2_MAP['u']]
+        m4 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['d']]) + \
+             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']])
+        m5 = -self.state[X2_MAP['U']] + self.state[X2_MAP['C']]
+        m6 = -self.state[X2_MAP['L']] + self.state[X2_MAP['U']]
+        m1, m2, m3, m4, m5, m6 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12, m6 % 12
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-
-    def get_7_simul_no_flip_tommy_x2(self):
-        m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
-        m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
-             (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
-        m3 = -self.state[X2_MAP['r']] + self.state[X2_MAP['d']]
-        m4 = -((-self.state[X2_MAP['C']] + self.state[X2_MAP['U']]) +
-               self.state[X2_MAP['D']] +
-               (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']]) +
-               (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]))
-        m5 = (-self.state[X2_MAP['c']] + self.state[X2_MAP['u']]) + \
-             self.state[X2_MAP['d']] + \
-             (-self.state[X2_MAP['L']] + self.state[X2_MAP['UL']]) + \
-             (-self.state[X2_MAP['R']] + self.state[X2_MAP['DR']])
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
-
-    def get_7_simul_no_flip_tommy_y2(self):
-        m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
-        m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
-             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
-        m3 = -self.state[Y2_MAP['l']] + self.state[Y2_MAP['u']]
-        m4 = -((-self.state[Y2_MAP['C']] + self.state[Y2_MAP['U']]) +
-               self.state[Y2_MAP['D']] +
-               (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) +
-               (-self.state[Y2_MAP['r']] + self.state[Y2_MAP['dr']]))
-        m5 = (-self.state[Y2_MAP['c']] + self.state[Y2_MAP['u']]) + \
-             self.state[Y2_MAP['d']] + \
-             (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['UL']]) + \
-             (-self.state[Y2_MAP['R']] + self.state[Y2_MAP['DR']])
-        m1, m2, m3, m4, m5 = m1 % 12, m2 % 12, m3 % 12, m4 % 12, m5 % 12
-        return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
-                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
+                m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
