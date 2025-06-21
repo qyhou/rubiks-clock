@@ -52,7 +52,7 @@ class Clock(object):
         self.back_state = None
 
         self.generate_scramble()
-        self.calc_state()
+        self.get_state()
         self.rotate()
 
     def generate_scramble(self):
@@ -60,7 +60,7 @@ class Clock(object):
             self.scramble = 'UR{} DR{} DL{} UL{} U{} R{} D{} L{} ALL{} y2 U{} R{} D{} L{} ALL{}'.format(
                 *[MOVE_TO_SCRAMBLE[random.randint(-5, 6)] for _ in range(14)])
 
-    def calc_state(self):
+    def get_state(self):
         front_seq, back_seq = self.scramble.split(' y2 ')
         for s in front_seq.split(' '):
             self.state += STEPS[s[: len(s) - 2]] * SCRAMBLE_TO_MOVE[s[len(s) - 2:]]
@@ -79,7 +79,7 @@ class Clock(object):
         self.front_state = np.concatenate([self.state[i: i + 3] for i in range(0, len(self.state), 6)]).reshape(3, 3)
         self.back_state = np.concatenate([self.state[i + 3: i + 6] for i in range(0, len(self.state), 6)]).reshape(3, 3)
 
-    def get_7_simul_no_flip_tommy_x2(self):
+    def calc_t7s_x2(self):
         m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
         m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
              (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
@@ -96,7 +96,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_no_flip_tommy_y2(self):
+    def calc_t7s_y2(self):
         m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
         m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
              (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
@@ -113,7 +113,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_no_flip_bpaul_x2(self):
+    def calc_b7s_x2(self):
         m1 = -self.state[X2_MAP['d']] + self.state[X2_MAP['c']]
         m2 = (-self.state[X2_MAP['r']] + self.state[X2_MAP['dr']]) + \
              (-self.state[X2_MAP['L']] + self.state[X2_MAP['U']])
@@ -126,7 +126,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
 
-    def get_7_simul_no_flip_bpaul_y2(self):
+    def calc_b7s_y2(self):
         m1 = -self.state[Y2_MAP['u']] + self.state[Y2_MAP['c']]
         m2 = (-self.state[Y2_MAP['l']] + self.state[Y2_MAP['ul']]) + \
              (-self.state[Y2_MAP['L']] + self.state[Y2_MAP['U']])
@@ -139,7 +139,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
 
-    def get_7_simul_flip_tommy_1_x2(self):
+    def calc_t7sf_1(self):
         m1 = (-self.state[X2_MAP['DR']] + self.state[X2_MAP['R']]) + \
              (-self.state[X2_MAP['u']] + self.state[X2_MAP['l']])
         m2 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
@@ -157,7 +157,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_flip_tommy_2_x2(self):
+    def calc_t7sf_2(self):
         m1 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
              (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
         m2 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
@@ -174,7 +174,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12)
 
-    def get_7_simul_flip_bpaul_1_x2(self):
+    def calc_b7sf_1(self):
         m1 = (-self.state[X2_MAP['DR']] + self.state[X2_MAP['R']]) + \
              (-self.state[X2_MAP['u']] + self.state[X2_MAP['l']])
         m2 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
@@ -188,7 +188,7 @@ class Clock(object):
         return (m1 if m1 < 7 else m1 - 12, m2 if m2 < 7 else m2 - 12, m3 if m3 < 7 else m3 - 12,
                 m4 if m4 < 7 else m4 - 12, m5 if m5 < 7 else m5 - 12, m6 if m6 < 7 else m6 - 12)
 
-    def get_7_simul_flip_bpaul_2_x2(self):
+    def calc_b7sf_2(self):
         m1 = (-self.state[X2_MAP['R']] + self.state[X2_MAP['D']]) + \
              (-self.state[X2_MAP['l']] + self.state[X2_MAP['ul']])
         m2 = -self.state[X2_MAP['u']] + self.state[X2_MAP['c']]
